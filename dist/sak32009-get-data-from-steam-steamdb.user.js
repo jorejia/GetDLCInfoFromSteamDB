@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Get Data from Steam / SteamDB
 // @namespace    sak32009-gaxvyvrguokgtog
-// @version      4.6.3
-// @author       forked from Sak32009 (https://sak32009.github.io/)
+// @version      4.6.4
+// @author       jorejia (forked from Sak32009)
 // @description  Get Data from Steam / SteamDB (ex Get DLC Info from SteamDB) is a userscript that extracts all data needed to generate DLCs formats and depot.sha1 for Steam games.
 // @license      MIT
 // @homepage     https://github.com/jorejia/GetDLCInfoFromSteamDB/
@@ -39,7 +39,7 @@ var __publicField = (obj, key, value) => {
   })();
   const name = "sak32009-gaxvyvrguokgtog";
   const productName = "Get Data from Steam / SteamDB";
-  const version = "4.6.3";
+  const version = "4.6.4";
   const appIdAppIdName = "[dlcs]{dlcId} = {dlcName}[/dlcs]\n";
   const appIdAppIdName2 = '[dlcs]{dlcId} = "{dlcName}"[/dlcs]\n';
   const appIdName = "[dlcs]{dlcName}[/dlcs]\n";
