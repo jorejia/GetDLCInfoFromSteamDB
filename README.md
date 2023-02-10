@@ -2,9 +2,9 @@
 
 **_Get Data from Steam / SteamDB_** (_ex Get DLC Info from SteamDB_) is a userscript that extracts all data needed to generate DLCs formats and depot.sha1 for Steam games.
 
-
+English | [简体中文](./src/README.md)
 ## New features
-- Add greenLuma2023 one click to manage AppList folder in the steam path. (Download .bat file and just click it!)
+- Add GreenLuma2023 one click to manage AppList folder in the steam path. (Download .bat file and just click it!)
 - Add GreenLuma2023 Stealth Mode one click to manage AppList folder anywhere. (Download .bat file, then move it to the greenluma folder and click it!)
 
 ## Installation
