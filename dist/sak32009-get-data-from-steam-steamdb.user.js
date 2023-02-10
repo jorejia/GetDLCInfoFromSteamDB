@@ -203,6 +203,8 @@ disableuserinterface = false
 [dlcs]{dlcId} = {dlcName}[/dlcs]
 `;
   const greenLumaTwoZeroTwoZeroBatchMode = '@ECHO OFF\n:: WINDOWS WORKING DIR BUG WORKAROUND\nCD /D "%~dp0"\n:: CHECK APPLIST DIR\nIF EXIST .\\\\AppList RMDIR /S /Q .\\\\AppList\n:: CREATE APPLIST DIR\nMKDIR .\\\\AppList\n:: CREATE DLCS FILES FOR __[data]name[/data]__\nECHO [data]appId[/data]> .\\\\AppList\\\\0.txt\n[dlcs]:: {dlcName}\nECHO {dlcId}> .\\\\AppList\\\\{dlcIndex}.txt[/dlcs]\n:: START GREENLUMA 2020\nIF EXIST .\\\\DLLInjector.exe GOTO :Q\nGOTO :EXIT\n:Q\nSET /P c=Do you want to start GreenLuma 2020 [Y/N]?\nIF /I "%c%" EQU "Y" GOTO :START\nIF /I "%c%" EQU "N" GOTO :EXIT\nGOTO :Q\n:START\nCLS\nECHO Launching Greenluma 2020 - APPID [data]appId[/data] - APPNAME [data]name[/data]\nTASKKILL /F /IM steam.exe\nTIMEOUT /T 2\nDLLInjector.exe -DisablePreferSystem32Images\n:EXIT\nEXIT\n';
+  const greenLuma2023 = '@ECHO OFF\n:: WINDOWS STEAM DIR\nfor /f "tokens=2*" %%a in (\'reg query "HKEY_CURRENT_USER\\Software\\Valve\\Steam" /v "SteamPath" ^| findstr SteamPath\') do (set "steam_path=%%b")\ncd /d %steam_path%\nif exist AppList (rd /s /q AppList)\nmkdir AppList\n:: ENABLE APP\nECHO [data]appId[/data] > .\\AppList\\0.txt\n:: ENABLE DLCS\n[dlcs]ECHO {dlcId} > .\\AppList\\{dlcIndex}.txt[/dlcs]';
+  const greenLuma2023StealthMode = '@ECHO OFF\n:: CHECK DIR\nCD /D "%~dp0"\nif exist AppList (rd /s /q AppList)\nmkdir AppList\n:: ENABLE APP\nECHO [data]appId[/data] > .\\AppList\\0.txt\n:: ENABLE DLCS\n[dlcs]ECHO {dlcId} > .\\AppList\\{dlcIndex}.txt[/dlcs]';
   const greenLuma2020ManagerBlueAmulet = '[[dlcs]{"id":"{dlcId}","name":"{dlcName}","type":"DLC"},[/dlcs]]\n';
   const lumaEmuOnlyDlcsList = "[dlcs]; {dlcName}\nDLC_{dlcId} = 1[/dlcs]\n";
   const skidrowOnlyDlcsList = "[dlcs]; {dlcName}\n{dlcId}[/dlcs]\n";
@@ -243,6 +245,20 @@ disableuserinterface = false
       file: {
         name: "[data]appId[/data]_greenLuma2020ManagerBlueAmulet.txt",
         text: greenLuma2020ManagerBlueAmulet
+      }
+    },
+    greenLuma2023: {
+      name: "GreenLuma 2023",
+      file: {
+        name: "[data]name[/data].bat",
+        text: greenLuma2023
+      }
+    },
+    greenLuma2023StealthMode: {
+      name: "GreenLuma 2023 (Stealth Mode)",
+      file: {
+        name: "[data]name[/data].bat",
+        text: greenLuma2023StealthMode
       }
     },
     lumaEmuOnlyDlcsList: {
