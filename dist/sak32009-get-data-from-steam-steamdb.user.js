@@ -202,7 +202,6 @@ disableuserinterface = false
 ; then it won't be unlocked
 [dlcs]{dlcId} = {dlcName}[/dlcs]
 `;
-  const greenLumaTwoZeroTwoZeroBatchMode = '@ECHO OFF\n:: WINDOWS WORKING DIR BUG WORKAROUND\nCD /D "%~dp0"\n:: CHECK APPLIST DIR\nIF EXIST .\\\\AppList RMDIR /S /Q .\\\\AppList\n:: CREATE APPLIST DIR\nMKDIR .\\\\AppList\n:: CREATE DLCS FILES FOR __[data]name[/data]__\nECHO [data]appId[/data]> .\\\\AppList\\\\0.txt\n[dlcs]:: {dlcName}\nECHO {dlcId}> .\\\\AppList\\\\{dlcIndex}.txt[/dlcs]\n:: START GREENLUMA 2020\nIF EXIST .\\\\DLLInjector.exe GOTO :Q\nGOTO :EXIT\n:Q\nSET /P c=Do you want to start GreenLuma 2020 [Y/N]?\nIF /I "%c%" EQU "Y" GOTO :START\nIF /I "%c%" EQU "N" GOTO :EXIT\nGOTO :Q\n:START\nCLS\nECHO Launching Greenluma 2020 - APPID [data]appId[/data] - APPNAME [data]name[/data]\nTASKKILL /F /IM steam.exe\nTIMEOUT /T 2\nDLLInjector.exe -DisablePreferSystem32Images\n:EXIT\nEXIT\n';
   const greenLuma2023 = '@ECHO OFF\n:: WINDOWS STEAM DIR\nfor /f "tokens=2*" %%a in (\'reg query "HKEY_CURRENT_USER\\Software\\Valve\\Steam" /v "SteamPath" ^| findstr SteamPath\') do (set "steam_path=%%b")\ncd /d %steam_path%\nif exist AppList (rd /s /q AppList)\nmkdir AppList\n:: ENABLE APP\nECHO [data]appId[/data] > .\\AppList\\0.txt\n:: ENABLE DLCS\n[dlcs]ECHO {dlcId} > .\\AppList\\{dlcIndex}.txt[/dlcs]';
   const greenLuma2023StealthMode = '@ECHO OFF\n:: CHECK DIR\nCD /D "%~dp0"\nif exist AppList (rd /s /q AppList)\nmkdir AppList\n:: ENABLE APP\nECHO [data]appId[/data] > .\\AppList\\0.txt\n:: ENABLE DLCS\n[dlcs]ECHO {dlcId} > .\\AppList\\{dlcIndex}.txt[/dlcs]';
   const greenLuma2020ManagerBlueAmulet = '[[dlcs]{"id":"{dlcId}","name":"{dlcName}","type":"DLC"},[/dlcs]]\n';
@@ -231,13 +230,6 @@ disableuserinterface = false
       file: {
         name: "[data]appId[/data]_steamLauncherMiniOnlyDlcsList.txt",
         text: steamLauncherMiniOnlyDlcsList
-      }
-    },
-    greenLuma2020BatchMode: {
-      name: "GreenLuma 2020 (BATCH MODE)",
-      file: {
-        name: "[data]appId[/data]_greenLuma2020BatchMode.bat",
-        text: greenLumaTwoZeroTwoZeroBatchMode
       }
     },
     greenLuma2020ManagerBlueAmulet: {
@@ -319,7 +311,7 @@ disableuserinterface = false
     }
   };
   const skOpenHtml = '<div class="sak32009">\n  <button\n    type="button"\n    class="btn btn-sake-primary me-2 rounded-0 rounded-top position-fixed bottom-0 end-0 d-flex align-items-center"\n    data-bs-toggle="modal"\n    data-bs-target="#%(pkgName)s"\n  >\n    <span class="ms-1">%(pkgProductName)s v%(pkgVersion)s</span>\n  </button>\n</div>\n';
-  const skModalHtml = '<div class="sak32009">\n  <div class="modal fade" id="%(pkgName)s">\n    <div class="modal-dialog modal-dialog-centered modal-lg">\n      <div class="modal-content text-bg-sake-primary">\n        <div class="modal-header border-sake-secondary">\n          <h6 class="modal-title">\n            <b>%(pkgProductName)s v%(pkgVersion)s</b>\n          </h6>\n          <a class="ms-1" href="https://github.com/Sak32009" target="_blank">view my projects</a>\n          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>\n        </div>\n        <div class="modal-body p-0">%(body)s</div>\n      </div>\n    </div>\n  </div>\n</div>\n';
+  const skModalHtml = '<div class="sak32009">\n  <div class="modal fade" id="%(pkgName)s">\n    <div class="modal-dialog modal-dialog-centered modal-lg">\n      <div class="modal-content text-bg-sake-primary">\n        <div class="modal-header border-sake-secondary">\n          <h6 class="modal-title">\n            <b>%(pkgProductName)s v%(pkgVersion)s</b>\n          </h6>\n          <a class="ms-1" href="https://github.com/jorejia/GetDLCInfoFromSteamDB" target="_blank">forked edition</a>\n          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>\n        </div>\n        <div class="modal-body p-0">%(body)s</div>\n      </div>\n    </div>\n  </div>\n</div>\n';
   const skSimpleHtml = '<div class="d-flex justify-content-end">%(downloadAsFileHtml)s</div>\n%(preHtml)s\n';
   const skExtendedHtml = '<div class="input-group">\n  <select id="sake_select" class="form-select form-select-sm text-white bg-sake-secondary %(buttonCss)s">\n    %(optionsHtml)s\n  </select>\n  <label class="btn btn-sake-secondary %(buttonCss)s %(isSteamDBApp)s" for="sake_unknowns">\n    <div class="form-check">\n      <input class="form-check-input" style="margin-top: 5px" type="checkbox" id="sake_unknowns" />\n      <span class="form-check-label">With DLCs Unknowns</span>\n    </div>\n  </label>\n  %(downloadAsFileHtml)s\n</div>\n%(preHtml)s\n<div class="p-2 text-bg-sake-secondary rounded-bottom">\n  <div class="%(condDlcsHiddens)s border-sake-primary border-bottom p-1 pt-0">DLCs Hiddens: %(listDlcsHiddens)s</div>\n  <div class="d-flex flex-row justify-content-end">\n    <div class="me-1">DLCs: %(extractedData.countDlcs)s</div>\n    <div class="me-1">|</div>\n    <div class="me-1 %(isSteamDBApp)s">DLCs Unknowns: %(extractedData.countDlcsUnknowns)s</div>\n    <div class="me-1 %(isSteamDBApp)s">|</div>\n    <div class="me-1 %(condDlcsHiddens)s">DLCs Hiddens: %(extractedData.countDlcsHiddens)s</div>\n    <div class="me-1 %(condDlcsHiddens)s">|</div>\n    <div>Total DLCs: %(extractedData.countAllDlcs)s</div>\n  </div>\n</div>\n';
   const bootstrap2 = "";
@@ -408,7 +400,7 @@ disableuserinterface = false
         this.extractedData.countDlcs += 1;
         this.extractedData.countAllDlcs += 1;
       });
-      if (this.extractedData.countAllDlcs > 0) {
+      if (this.extractedData.countAllDlcs > -1) {
         this.setModal();
       }
     }

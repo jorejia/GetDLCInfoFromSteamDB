@@ -1,5 +1,9 @@
 # Get Data from Steam / SteamDB
 
+## 优化
+- 更改显示逻辑，在 steam 商店，所有游戏（不管是否有DLC）都会在右下角显示，方便 Greenluma 导入
+- 去除 Greenluma2020, 它并不能很好地生效
+
 ## 新特性
 - 支持 Greenluma2023 一键生成 AppList 文件夹
 - 支持 Greenluma2023 隐身模式一键生成 AppList 文件夹
