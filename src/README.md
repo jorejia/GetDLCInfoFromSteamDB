@@ -9,7 +9,7 @@
 - 支持 Greenluma2023 隐身模式一键生成 AppList 文件夹
 
 ## 安装
-- 首先需要在浏览器安装 [油猴](https://tampermonkey.net/), 然后点击 [**这里**](https://github.com/jorejia/GetDLCInfoFromSteamDB/raw/master/dist/sak32009-get-data-from-steam-steamdb.user.js) 自动跳转安装脚本
+- 首先需要在浏览器安装 [**油猴**](https://tampermonkey.net/), 然后点击 [**这里**](https://github.com/jorejia/GetDLCInfoFromSteamDB/raw/master/dist/sak32009-get-data-from-steam-steamdb.user.js) 自动跳转安装脚本
 
 ## 用法
 - 安装之后，在 steam 商店右下角可以看到脚本界面，点击打开使用
