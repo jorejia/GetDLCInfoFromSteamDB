@@ -204,7 +204,7 @@ disableuserinterface = false
 `;
   const greenLuma2023 = `@ECHO OFF
 :: CHECK STEAM DIR
-FOR /F "tokens=2*" %%A IN ('REG QUERY "HKEY_CURRENT_USER\Software\Valve\Steam" /v "SteamPath" ^| FINDSTR SteamPath') DO (
+FOR /F "tokens=2*" %%A IN ('REG QUERY "HKEY_CURRENT_USER\\Software\\Valve\\Steam" /v "SteamPath" ^| FINDSTR SteamPath') DO (
 SET "steam_path=%%B"
 )
 CD /D %steam_path%
