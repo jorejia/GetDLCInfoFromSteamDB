@@ -39,7 +39,7 @@ var __publicField = (obj, key, value) => {
   })();
   const name = "sak32009-gaxvyvrguokgtog";
   const productName = "Get Data from Steam / SteamDB";
-  const version = "4.6.4";
+  const version = "4.6.5";
   const appIdAppIdName = "[dlcs]{dlcId} = {dlcName}[/dlcs]\n";
   const appIdAppIdName2 = '[dlcs]{dlcId} = "{dlcName}"[/dlcs]\n';
   const appIdName = "[dlcs]{dlcName}[/dlcs]\n";
