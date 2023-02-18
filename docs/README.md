@@ -17,7 +17,9 @@
 ### Greenluma
 - 如果 AppList 文件夹在 steam 目录，下载 `Greenluma2023` 下的 .bat 文件，在任意位置运行即可
 - 如果是在其他目录（Greenluma目录），即隐身模式，下载 `Greenluma2023 (Stealth Mode)` 下的 .bat 文件放在指定位置运行，会在脚本文件当前目录生成 AppList 文件夹
+
 ![](./photo_2023-02-10_21-55-10.jpg)
+
 ### Steamtools
 - 选中 INSTALL/UNLOCK APP 下的文字，拖拽到 steamtools 悬浮窗，如果未入库则触发安装（仅入库非真实安装，如需要下载，请移步 [**ManifestAutoUpdate**](https://github.com/wxy1343/ManifestAutoUpdate)，如果已入库则解锁，重启生效
 - 选中 UNLOCK DLCS 下文字，拖拽到 steamtools 悬浮窗，解锁 DLC
